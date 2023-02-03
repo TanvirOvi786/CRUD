@@ -6,19 +6,19 @@ import UpdatePage from './pages/updatePage';
 
 
 class App extends Component {
+  ;
   render() {
-    return (
 
+    return (
       <Fragment>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<ReadPage />}></Route>
             <Route path="/create" element={<CreatePage />}></Route>
-            <Route path="/update" element={<UpdatePage />}></Route>
-
+            <Route path="/update/:id" element={<UpdatePage />}></Route>
           </Routes>
         </BrowserRouter>
-      </Fragment>
+      </Fragment >
     );
   }
 }

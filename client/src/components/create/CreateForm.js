@@ -1,10 +1,13 @@
-import React, { useRef } from 'react';
+import React, { Fragment, useRef } from 'react';
 import { Create } from '../../APIservices/crudServices';
 import { ErrorCogo, isEmpty, SuccessCogo } from '../../helper/ValidHelper';
+import FullscreenLoader from '../common/FullscreenLoader';
+import { useNavigate } from 'react-router-dom';
 
 function CreateForm() {
 
-    let ProductsName, ProductsCode, Img, unitPrice, Qty, TotalPrice = useRef();
+    let ProductsName, ProductsCode, Img, unitPrice, Qty, TotalPrice, Loader = useRef();
+    const navigate = useNavigate();
     const SaveData = () => {
 
         let Products_Name = ProductsName.value;
@@ -33,17 +36,13 @@ function CreateForm() {
         } else if (isEmpty(Total_Price)) {
             ErrorCogo("Products Total Price Require");
         } else {
-
+            Loader.classList.remove('d-none')
             Create(Products_Name, Products_Code, Products_Img, Unit_Price, Products_Qty, Total_Price)
                 .then((Result) => {
+                    Loader.classList.add('d-none')
                     if (Result === true) {
                         SuccessCogo("Data Save Success!");
-                        ProductsName.value = "";
-                        ProductsCode.value = "";
-                        Img.value = "";
-                        unitPrice.value = "";
-                        Qty.value = "";
-                        TotalPrice.value = "";
+                        navigate("/");
                     } else {
                         ErrorCogo("Request failed Try Again");
                     }
@@ -58,40 +57,57 @@ function CreateForm() {
 
 
     return (
-        <div className='container'>
-            <div className='row'>
-                <div className="col-md-4 p-2">
-                    <label>Products Name</label>
-                    <input ref={(input) => ProductsName = input} type="text" className='form-control' />
-                </div>
-                <div className="col-md-4 p-2">
-                    <label>Products Code</label>
-                    <input ref={(input) => ProductsCode = input} type="text" className='form-control' />
-                </div>
-                <div className="col-md-4 p-2">
-                    <label>Products Image</label>
-                    <input ref={(input) => Img = input} type="text" className='form-control' />
-                </div>
-                <div className="col-md-4 p-2">
-                    <label>Products Unit Price</label>
-                    <input ref={(input) => unitPrice = input} type="text" className='form-control' />
-                </div>
-                <div className="col-md-4 p-2">
-                    <label>Products Qty</label>
-                    <input ref={(input) => Qty = input} type="text" className='form-control' />
-                </div>
-                <div className="col-md-4 p-2">
-                    <label>Total Price</label>
-                    <input ref={(input) => TotalPrice = input} type="text" className='form-control' />
+        <Fragment>
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-md-10">
+                        <div className="card">
+                            <div className="card-header pb-0">
+                                <h4 className="animated fadeInUp">Create Product</h4>
+                            </div>
+                            <div className="card-body">
+                                <div className='row'>
+                                    <div className="col-md-4 p-2">
+                                        <label className="animated fadeInUp">Products Name</label>
+                                        <input ref={(input) => ProductsName = input} type="text" className='form-control animated fadeInUp' />
+                                    </div>
+                                    <div className="col-md-4 p-2">
+                                        <label className="animated fadeInUp">Products Code</label>
+                                        <input ref={(input) => ProductsCode = input} type="text" className='form-control animated fadeInUp' />
+                                    </div>
+                                    <div className="col-md-4 p-2">
+                                        <label className="animated fadeInUp">Products Image</label>
+                                        <input ref={(input) => Img = input} type="text" className='form-control animated fadeInUp' />
+                                    </div>
+                                    <div className="col-md-4 p-2">
+                                        <label className="animated fadeInUp">Products Unit Price</label>
+                                        <input ref={(input) => unitPrice = input} type="text" className='form-control animated fadeInUp' />
+                                    </div>
+                                    <div className="col-md-4 p-2">
+                                        <label className="animated fadeInUp">Products Qty</label>
+                                        <input ref={(input) => Qty = input} type="text" className='form-control animated fadeInUp' />
+                                    </div>
+                                    <div className="col-md-4 p-2">
+                                        <label className="animated fadeInUp">Total Price</label>
+                                        <input ref={(input) => TotalPrice = input} type="text" className='form-control animated fadeInUp' />
+                                    </div>
+                                </div>
+                                <br />
+                                <div className='row'>
+                                    <div className="col-md-4 p-2">
+                                        <button onClick={SaveData} className='btn w-100 animated fadeInUp btn-primary'>Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <br />
-            <div className='row'>
-                <div className="col-md-4 p-2">
-                    <button onClick={SaveData} className='btn w-100 btn-primary'>Save</button>
-                </div>
+            <div className='d-none' ref={(div) => Loader = div}>
+                <FullscreenLoader />
             </div>
-        </div>
+        </Fragment>
+
     );
 }
 

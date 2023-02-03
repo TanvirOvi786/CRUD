@@ -45,35 +45,13 @@ mongoose.connect(URI, OPTION, (error) => {
     }
 })
 
-
-
+//manging backend routing
+app.use('/api/v1', router)
 app.get('*', function (req, res) {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
 })
-// app.use((req, res, next) => {
-//     const allowedOrigins = [
-//         'http://localhost:5000',
-//         'https://bholabarassociation.com',
-//         'http://192.168.0.110:5000',
-//         'http://192.168.0.105:5000',
-//         'http://localhost:3000',
-//     ]
-//     const origin = req.headers.origin || "";
-//     if (allowedOrigins.includes(origin)) {
-//         res.setHeader("Access-Control-Allow-Origin", origin);
-//     }
-//     res.header("Access-Control-Allow-Methods", "GET, PUT, DELETE, OPTIONS");
-//     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//     res.header("Access-Control-Allow-Credentials", "true");
 
-//     if (req.method === "OPTIONS") {
-//         return res.status(200).end();
-//     }
 
-//     return next();
-// });
 
-//manging backend routing
-app.use('/api/v1', router)
 
 module.exports = app;

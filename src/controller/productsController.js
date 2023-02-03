@@ -15,10 +15,22 @@ exports.createProducts = (req, res) => {
 //R=Read
 exports.readProdcuts = (req, res) => {
     let query = {};
-    let projection = "ProductsName ProductsCode Img unitPrice Qty TotalPrice"
-    // let id = req.params.id;
-    // let Query = { _id: id };
-    ProductsModel.find(query, projection, (err, data) => {
+
+
+    ProductsModel.find(query, (err, data) => {
+        if (err) {
+            res.status(400).json({ status: "Data Read Failed", data: err });
+        } else {
+            res.status(200).json({ status: "Data Read Success", data: data });
+        }
+    })
+}
+//R=Read byID
+exports.readProdcutsById = (req, res) => {
+    let id = req.params.id;
+    let query = { _id: id };
+
+    ProductsModel.find(query, (err, data) => {
         if (err) {
             res.status(400).json({ status: "Data Read Failed", data: err });
         } else {

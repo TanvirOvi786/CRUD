@@ -1,0 +1,123 @@
+.ProcessingDiv {
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 10000 !important;
+}
+
+.fa-2x {
+    font-size: 20px !important;
+}
+
+
+
+
+.center-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 85vh;
+}
+
+.loader-size {
+    width: 300px;
+}
+
+.list-img {
+    width: auto;
+    height: 50px;
+}
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+
+h4 {
+    color: white;
+    font-weight: bolder;
+    font-size: 30px;
+    font-family: cursive;
+}
+
+.nav-logo {
+    height: 30px;
+}
+
+a {
+    font-size: 18px;
+    color: Black;
+    text-decoration: None;
+    font-family: cursive;
+}
+
+a:hover {
+    color: chocolate;
+}
+
+.navbar {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .16);
+    margin-bottom: 30px;
+}
+
+.list-card {
+    overflow-y: auto;
+    height: 80vh !important;
+}
+
+.card {
+    box-shadow: 0 20px 27px 0 rgba(0, 0, 0, .05);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: initial;
+    border: 0 solid rgba(0, 0, 0, .125);
+    border-radius: 1rem;
+
+}
+
+.text-success {
+    color: #101828 !important;
+}
+
+.card-header {
+    background-color: #728FCE;
+}
+
+
+label {
+    font-size: 20px;
+    font-family: cursive;
+}
+
+.card-body {
+    font-family: "Open Sans";
+    padding: 1.5rem;
+}
+
+
+
+.btn-primary {
+    color: #fff;
+    background-color: #cb0c9f;
+    border-color: none;
+}
+
+body {
+    /* background-color: #e9ecef; */
+    background-color: #95B9C7;
+}
+
+::-webkit-scrollbar {
+    display: none !important;
+}

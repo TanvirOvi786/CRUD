@@ -3,13 +3,16 @@ const productsController = require('../controller/productsController');
 const router = express.Router();
 
 //C
-router.post("/createProdcuts", productsController.createProducts);
+router.post("/createProducts", productsController.createProducts);
 //R
-router.post("/readProdcuts", productsController.readProdcuts);
+router.post("/readProducts", productsController.readProdcuts);
+//R by ID
+router.get("/readProdcutsById/:id", productsController.readProdcutsById);
+
 //U
-router.post("/updateProdcuts/:id", productsController.updateProdcuts);
+router.post("/updateProducts/:id", productsController.updateProdcuts);
 //D
-router.post("/deleteProdcuts/:id", productsController.deleteProdcuts);
+router.post("/deleteProducts/:id", productsController.deleteProdcuts);
 
 
 //api Routing Endpoints..
